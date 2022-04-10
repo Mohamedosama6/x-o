@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mohamed osama</title>
+    <link rel="icon" href="./download (1).png">
+    <link rel="stylesheet" href="./mosama.css">
+
+    <script>
+        var turn=0 , board=[];
+        function done(x){
+            var my_element = document.getElementById('b'+x) ;
+            if(turn==0){my_element.disabled=true;
+                turn=1;
+                my_element.value="X";
+                board[x]='x';
+            }
+            else if(turn==1)
+            {
+                my_element.disabled=true;
+                turn=0;
+                my_element.value="O";
+                board[x]='o';
+            }
+            if(check_win(board[x]))
+            {
+                alert(board[x]+' wins');
+                for(var i=0;i<=8;i++)
+                {
+                    document.getElementById('b'+i).disabled=true;
+                }
+            }
+        }
+        function check_win(player)
+        {
+            for(var i=0;i<=2;i++)
+            {
+                if(board[i]==board[i+3]&&board[i]==board[i+6]&&board[i]==player)
+                {
+                    return true;
+                }
+            }
+            for(var i=0;i<=6;i+=3)
+            {
+                if(board[i]==board[i+1]&&board[i]==board[i+2]&&board[i]==player)
+                {
+                    return true;
+                }
+            }
+            if(board[0]==board[4]&&board[0]==board[8]&&board[0]==player)
+            {
+                return true;
+            }
+            if(board[2]==board[4]&&board[2]==board[6]&&board[2]==player)
+            {
+                return true;
+            }
+        }
+        function go()
+        {
+            document.getElementById("play").style.display = "block";
+            document.getElementById("start").style.display = "none";
+        }
+        function back()
+        {
+            document.getElementById("start").style.display = "block";
+            document.getElementById("play").style.display = "none";
+        }
+        function restart()
+        {
+            for(var i=0;i<=8;i++)
+            {
+                document.getElementById('b'+i).disabled=false;
+                document.getElementById('b'+i).value='';
+                board[i]='';
+                turn=0;
+            }
+        }
+        </script>
+
+</head>
+<body>
+    <center> <h1> <a href="https://www.facebook.com/profile.php?id=100053890304449" target="blank"> Eg: mohamed osama </h1></center> </a>
+        <br> </br>
+        <center> <h1> مواقع محمد اسامه تتمني لكم صوما مقبولا وافطارا شيها </h1></center>
+
+        <div id="start">
+        <p id="p1"><b>Tic Tac Toe</b></p><br/>
+        <p id="p2">2 Players</p><br/>
+        <button onclick="go()" id="go0">Start</button>
+        </div>
+        <div id="play">
+        <button onclick="back()" class="btns" id="back0">Back</button>
+        <table align="center">
+        <tr>
+        <td><input type="button" value="" onclick="done('0')" id="b0"/></td>
+        <td><input type="button" value="" onclick="done('1')" id="b1"/></td>
+        <td><input type="button" value="" onclick="done('2')" id="b2"/></td>
+        </tr>
+        <tr>
+        <td><input type="button" value="" onclick="done('3')" id="b3"/></td>
+        <td><input type="button" value="" onclick="done('4')" id="b4"/></td>
+        <td><input type="button" value="" onclick="done('5')" id="b5"/></td>
+        </tr>
+        <tr>
+        <td><input type="button" value="" onclick="done('6')" id="b6"/></td>
+        <td><input type="button" value="" onclick="done('7')" id="b7"/></td>
+        <td><input type="button" value="" onclick="done('8')" id="b8"/></td>
+        </tr>
+        </table>
+        <button onclick="restart()" class="btns">Restart</button>
+        </div>
+        
+</body>
+</html>
